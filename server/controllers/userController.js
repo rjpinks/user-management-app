@@ -16,7 +16,7 @@ exports.view = (req, res) => {
         if(err) throw err; //not connect
         console.log("connected as ID " + connection.threadId);
 
-        connection.query("SELECT * FROM Users", (err, rows) => {
+        connection.query('SELECT * FROM Users WHERE status = "active"', (err, rows) => {
             //when done with the connection, release it
             connection.release();
             if(!err) {
@@ -29,3 +29,24 @@ exports.view = (req, res) => {
         })
     })
 };
+
+exports.find = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if(err) throw err; //not connect
+        console.log("connected as ID " + connection.threadId);
+
+        let searchTerm = req.body.search //search comes from the name of the <form> in main.hbs
+
+        connection.query('SELECT * FROM Users WHERE first_name LIKE ? OR last_name LIKE ?', ["%" + searchTerm + "%", "%" + searchTerm + "%"], (err, rows) => {
+            //when done with the connection, release it
+            connection.release();
+            if(!err) {
+                res.render("home", { rows });
+            } else {
+                res.send(err)
+            }
+
+            console.log("User table data: \n", rows)
+        })
+    })
+}
