@@ -10,7 +10,7 @@ require("dotenv").config();
 
 // Preparing the Port
 const app = express()
-const PORT = process.env.JAWS_DB || 3001;
+const PORT = 3001;
 
 /* PASSING MIDDLEWARE */
 
