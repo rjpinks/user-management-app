@@ -8,43 +8,11 @@
 {{#if alert}}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{alert}}
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <!--<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
 
 <form class="row g-3 needs-validation" method="POST" action="/adduser" novalidate>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="First Name" name="first_name">
-            <label for="floatingInput">First Name</label>
-        </div>
-    </div>
-        <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Last Name" name="last_name">
-            <label for="floatingInput">Last Name</label>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Phone" name="phone">
-            <label for="floatingInput">Phone</label>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Email@email.com" name="email">
-            <label for="floatingInput">Email</label>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="form-floating mb-3">
-            <textarea type="text" class="form-control" id="floatingInput" placeholder="Comment" name="comment" style="height: 200px;">{{this.comments}}</textarea>
-            <label for="floatingInput">Comment</label>
-        </div>
-    </div>
-    <div class="col-12 d-grid">
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
+    {{> user-form}}
 </form>
