@@ -4,7 +4,7 @@ require("dotenv").config();
 // Connection Pool
 const pool = mysql.createPool({
     connectionLimit : 100,
-    //host : process.env.JAWSDB_HOST,
+    host : process.env.JAWS_URL,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
