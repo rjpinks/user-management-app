@@ -10,7 +10,7 @@ require("dotenv").config();
 
 // Preparing the Port
 const app = express()
-const PORT = 3001;
+const PORT = process.env.PORT ||3001;
 
 /* PASSING MIDDLEWARE */
 
@@ -29,10 +29,10 @@ app.set("view engine", "hbs");
 // Connection Pool
 const pool = mysql.createPool({
     connectionLimit : 100,
-    //host : process.env.DB_HOST,
-    user: "root",
-    password: "Password1",
-    database: "user_management_db"
+    host : process.env.JAWSDB_URL,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 pool.getConnection((err, connection) => {
