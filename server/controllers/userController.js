@@ -2,13 +2,17 @@ const mysql = require("mysql2");
 require("dotenv").config();
 
 // Connection Pool
-const pool = mysql.createPool({
-    connectionLimit : 100,
-    host : process.env.JAWSDB_URL,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+if (process.env.JAWSDB_URL) {
+    pool = mysql.createPool(process.env.JAWSDB_URL)
+} else {
+    pool = mysql.createPool({
+        connectionLimit : 100,
+        host : process.env.JAWSDB_URL,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
+    });
+}
 
 
 // View Users
